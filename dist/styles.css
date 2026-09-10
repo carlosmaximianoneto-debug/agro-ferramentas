@@ -22,4 +22,5 @@ footer{padding-bottom:125px}
 @keyframes toastEnter{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:650px){.group-toast{left:18px;width:calc(100% - 36px);max-width:444px}}
 @media(prefers-reduced-motion:reduce){.mobile-cta,.mobile-cta::after,.group-toast{animation:none!important}}
-.simulation-label{display:block;color:var(--yellow);font-size:12px;font-weight:700;line-height:1.4;margin-bottom:3px}
+
+

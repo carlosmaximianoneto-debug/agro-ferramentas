@@ -35,7 +35,7 @@ async function start() {
 }
 document.getElementById('year').textContent=new Date().getFullYear();start();
 
-// Efeito demonstrativo: nomes fictícios, sempre identificado como simulação.
+// Efeito visual solicitado: nomes fictícios; não representa eventos do WhatsApp.
 const groupToast = document.getElementById('group-toast');
 const simulatedJoins = [
   ['Marcos S.', 'Cuiabá, MT'], ['Juliana R.', 'Rondonópolis, MT'],
@@ -49,7 +49,7 @@ function showSimulatedJoin() {
   if (toastClosed || document.hidden || groupToast.contains(document.activeElement)) return;
   const [name, city] = simulatedJoins[joinIndex++ % simulatedJoins.length];
   document.getElementById('join-name').textContent = name + ' entrou no grupo';
-  document.getElementById('join-city').textContent = city + ' · Exemplo ilustrativo';
+  document.getElementById('join-city').textContent = city;
   groupToast.hidden = false;
   clearTimeout(hideTimer);
   hideTimer = setTimeout(() => { if (!groupToast.contains(document.activeElement)) groupToast.hidden = true; }, 4200);
@@ -63,3 +63,4 @@ document.getElementById('close-toast').addEventListener('click', () => {
   clearInterval(joinInterval);
   groupToast.hidden = true;
 });
+

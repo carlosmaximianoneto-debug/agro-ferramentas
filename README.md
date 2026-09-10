@@ -8,7 +8,7 @@ Importe este repositório no Netlify. O arquivo `netlify.toml` configura tudo: d
 
 O site já funciona com a seleção de 6 produtos essenciais para o agro salva em `dist/products.json`. Para consultar o banco automaticamente, configure a variável **SUPABASE_PUBLISHABLE_KEY** no Netlify com a chave publicável do projeto Supabase GrupoSoRefrigeracao e faça um novo deploy. Não use service_role. A função consulta apenas campos de produto e mantém a chave no servidor. Se a consulta falhar, a seleção salva continua disponível, identificada com sua data.
 
-Os preços são valores de referência do banco, não uma verificação em tempo real do preço do Mercado Livre. Não há contadores de membros, depoimentos ou prazos de oferta simulados. O aviso de entrada no grupo é demonstrativo, usa nomes fictícios e exibe os rótulos Simulação e Exemplo ilustrativo.
+Os preços são valores de referência do banco, não uma verificação em tempo real do preço do Mercado Livre. Não há contadores de membros, depoimentos ou prazos de oferta simulados. O aviso de entrada no grupo usa nomes fictícios, conforme solicitado. Não está conectado a eventos reais do WhatsApp.
 
 ## Arquivos
 
@@ -21,5 +21,6 @@ Os preços são valores de referência do banco, não uma verificação em tempo
 Não há dependências de instalação nem necessidade de alterar o banco para usar o site.
 
 A seleção fixa traz roçadeira, pulverizador, motobomba, perfurador de solo, irrigação e kit de ferramentas manuais. Para ver mais ofertas, os visitantes entram no grupo de WhatsApp. A função online consulta somente esses seis produtos.
+
 
 
