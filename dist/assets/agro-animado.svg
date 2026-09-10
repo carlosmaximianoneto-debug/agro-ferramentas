@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 260" role="img" aria-labelledby="title desc">
+<title id="title">Trator Agro em movimento</title><desc id="desc">Trator verde com rodas girando e linhas de movimento sobre o solo.</desc>
+<defs><linearGradient id="body" x2="0" y2="1"><stop stop-color="#91cb39"/><stop offset="1" stop-color="#3b7527"/></linearGradient><linearGradient id="glass" x2="1" y2="1"><stop stop-color="#729c84"/><stop offset="1" stop-color="#1c392c"/></linearGradient></defs>
+<style>
+.tractor{animation:bounce 2s ease-in-out infinite;filter:drop-shadow(0 12px 10px #0006)}.rear{transform-origin:155px 182px;animation:spin 6s linear infinite}.front{transform-origin:316px 194px;animation:spin 4s linear infinite}.dust{animation:dust 2.8s ease-out infinite;fill:none;stroke:#a5e334;stroke-width:3;stroke-linecap:round}.d2{animation-delay:.9s}.d3{animation-delay:1.8s}.lamp{animation:light 3s ease-in-out infinite}.track{stroke:#547245;stroke-width:2;stroke-linecap:round;stroke-dasharray:22 32;animation:ground 2s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}@keyframes bounce{50%{transform:translateY(-3px)}}@keyframes dust{0%{transform:translate(0,0);opacity:0}25%{opacity:.45}100%{transform:translate(-42px,-12px);opacity:0}}@keyframes light{50%{opacity:.55}}@keyframes ground{to{stroke-dashoffset:54}}@media(prefers-reduced-motion:reduce){*{animation:none!important}.dust{opacity:.3}}
+</style>
+<ellipse cx="238" cy="224" rx="145" ry="10" fill="#000" opacity=".25"/>
+<path d="M30 228H410" stroke="#283d29" stroke-width="2"/><path class="track" d="M40 237H400"/>
+<path class="dust" d="M104 193H77M94 204H62"/><path class="dust d2" d="M104 193H77M94 204H62"/><path class="dust d3" d="M104 193H77M94 204H62"/>
+<g class="tractor">
+<path d="M135 93L142 64H222L237 137H128Z" fill="#203828" stroke="#547c40" stroke-width="3"/>
+<path d="M151 75H181V127H141Z" fill="url(#glass)"/><path d="M190 75H214L225 127H190Z" fill="url(#glass)"/>
+<path d="M154 79L144 113M196 79L214 108" stroke="#9bbea9" opacity=".25" stroke-width="4"/>
+<path d="M132 60H225L230 70H129Z" fill="#8ecb39"/><path d="M199 129L206 117M201 114L215 120" stroke="#a0b298" stroke-width="4" stroke-linecap="round"/>
+<path d="M268 122V84H278V122" fill="#344838"/><path d="M267 84H280" stroke="#78906f" stroke-width="3"/>
+<path d="M210 121H318Q337 121 343 140L347 169H210Z" fill="url(#body)" stroke="#7db23a" stroke-width="2"/>
+<path d="M231 139H318" stroke="#d8dc71" stroke-width="5"/><path d="M328 140H343V166H328Z" fill="#17251a"/>
+<path d="M331 144H341M331 150H341M331 156H341M331 162H341" stroke="#66865b" stroke-width="2"/>
+<rect class="lamp" x="324" y="126" width="13" height="9" rx="3" fill="#ffe3a1"/>
+<path d="M139 163H333V185H191L179 169H139Z" fill="#3b572f"/><path d="M215 149H238V180H218" fill="#203326" stroke="#69894b" stroke-width="2"/>
+<path d="M215 172H241M217 182H245" stroke="#b1bd84" stroke-width="3"/>
+<path d="M97 166Q105 121 150 121Q187 121 201 153L188 159Q179 137 153 137Q124 137 115 170Z" fill="#75ad34" stroke="#96c448" stroke-width="2"/>
+<path d="M285 170Q317 149 342 173" fill="none" stroke="#8dc43d" stroke-width="8"/>
+<g class="rear"><circle cx="155" cy="182" r="45" fill="#111b15" stroke="#324638" stroke-width="5"/><circle cx="155" cy="182" r="37" fill="none" stroke="#53644b" stroke-width="6" stroke-dasharray="7 10"/><circle cx="155" cy="182" r="25" fill="#c5ac42" stroke="#ead279" stroke-width="3"/><path d="M155 162V202M135 182H175M141 168L169 196M141 196L169 168" stroke="#85762c" stroke-width="4"/><circle cx="155" cy="182" r="8" fill="#d9c470" stroke="#776b35" stroke-width="3"/></g>
+<g class="front"><circle cx="316" cy="194" r="32" fill="#111b15" stroke="#324638" stroke-width="4"/><circle cx="316" cy="194" r="25" fill="none" stroke="#53644b" stroke-width="5" stroke-dasharray="5 8"/><circle cx="316" cy="194" r="17" fill="#c5ac42" stroke="#ead279" stroke-width="2"/><path d="M316 180V208M302 194H330" stroke="#85762c" stroke-width="4"/><circle cx="316" cy="194" r="6" fill="#d9c470"/></g>
+<path d="M344 180H358V187H344M106 187H88" stroke="#56704c" stroke-width="6" stroke-linecap="round"/>
+</g></svg>
