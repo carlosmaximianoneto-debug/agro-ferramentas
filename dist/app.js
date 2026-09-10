@@ -25,11 +25,12 @@ function renderProducts() {
 async function read(url) { const r=await fetch(url,{signal:AbortSignal.timeout(10000)});if(!r.ok) throw new Error('Catálogo indisponível');return r.json(); }
 async function start() {
   try {
-    let data, live=false;
-    try { data=await read('/.netlify/functions/products');live=true; } catch { data=await read('products.json'); }
+    let data;
+    try { data=await read('/.netlify/functions/products'); } catch { data=await read('products.json'); }
     if(!Array.isArray(data.products)) throw new Error('Catálogo inválido');
     products=featuredIds.map(id=>data.products.find(p=>p.id===id)).filter(Boolean).filter(p=>safeUrl(p.url_curta)&&safeUrl(p.imagem,true)&&typeof p.titulo==='string'&&Number.isFinite(Number(p.preco))&&Number(p.preco)>0);
-    statusEl.textContent=products.length ? (live?'Seleção consultada no catálogo Agro.':'Seleção do catálogo Agro consultada em '+new Date(data.updatedAt).toLocaleDateString('pt-BR',{timeZone:'America/Cuiaba'})+'.')+' Confira os valores na loja.' : 'Nenhuma ferramenta disponível nesta seleção. Acompanhe as novidades no grupo.';
+    statusEl.textContent=products.length ? '' : 'Nenhuma ferramenta disponível nesta seleção. Acompanhe as novidades no grupo.';
+    statusEl.hidden=products.length>0;
     renderProducts();
   } catch { statusEl.textContent='Não foi possível carregar as ferramentas. Você pode acompanhar a seleção pelo grupo de WhatsApp.'; }
 }
