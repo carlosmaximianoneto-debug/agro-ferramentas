@@ -38,29 +38,25 @@ document.getElementById('year').textContent=new Date().getFullYear();start();
 // Efeito visual solicitado: nomes fictícios; não representa eventos do WhatsApp.
 const groupToast = document.getElementById('group-toast');
 const simulatedJoins = [
-  ['Marcos S.', 'Cuiabá, MT'], ['Juliana R.', 'Rondonópolis, MT'],
-  ['Pedro H.', 'Campo Grande, MS'], ['André L.', 'Sinop, MT'],
-  ['Rafael T.', 'Goiânia, GO'], ['Bruno C.', 'Primavera do Leste, MT']
+  ['Marcos S.','Cuiabá, MT'], ['Juliana R.','Rondonópolis, MT'],
+  ['Carlos E.','Goiânia, GO'], ['Pedro H.','Campo Grande, MS'],
+  ['André L.','Sinop, MT'], ['Felipe M.','Várzea Grande, MT'],
+  ['Rafael T.','Cuiabá, MT'], ['Bruno C.','Primavera do Leste, MT'],
+  ['Diego A.','Rondonópolis, MT'], ['Thiago N.','Goiânia, GO'],
+  ['Gustavo P.','Sorriso, MT'], ['Leandro F.','Cuiabá, MT']
 ];
-let joinIndex = 0;
-let toastClosed = false;
+let joinIndex = Math.floor(Math.random() * simulatedJoins.length);
 let hideTimer;
 function showSimulatedJoin() {
-  if (toastClosed || document.hidden || groupToast.contains(document.activeElement)) return;
-  const [name, city] = simulatedJoins[joinIndex++ % simulatedJoins.length];
-  document.getElementById('join-name').textContent = name + ' entrou no grupo';
+  if (document.hidden) return;
+  joinIndex = (joinIndex + 1) % simulatedJoins.length;
+  const [name, city] = simulatedJoins[joinIndex];
+  document.getElementById('join-name').textContent = name;
   document.getElementById('join-city').textContent = city;
-  groupToast.hidden = false;
+  document.getElementById('join-avatar').textContent = name.charAt(0);
+  groupToast.classList.add('show');
   clearTimeout(hideTimer);
-  hideTimer = setTimeout(() => { if (!groupToast.contains(document.activeElement)) groupToast.hidden = true; }, 4200);
+  hideTimer = setTimeout(() => groupToast.classList.remove('show'), 4200);
 }
-const firstJoinTimer = setTimeout(showSimulatedJoin, 2200);
-const joinInterval = setInterval(showSimulatedJoin, 9000);
-document.getElementById('close-toast').addEventListener('click', () => {
-  toastClosed = true;
-  clearTimeout(firstJoinTimer);
-  clearTimeout(hideTimer);
-  clearInterval(joinInterval);
-  groupToast.hidden = true;
-});
-
+setTimeout(showSimulatedJoin, 2200);
+setInterval(showSimulatedJoin, 9000);
