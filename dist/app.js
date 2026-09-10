@@ -35,3 +35,14 @@ async function start() {
 }
 document.getElementById('year').textContent=new Date().getFullYear();start();
 
+// Convite verdadeiro, sem nomes ou entradas simuladas no grupo.
+const groupToast = document.getElementById('group-toast');
+const toastTimer = setTimeout(() => {
+  if (!document.hidden) groupToast.hidden = false;
+}, 4500);
+const toastHideTimer = setTimeout(() => { groupToast.hidden = true; }, 14500);
+document.getElementById('close-toast').addEventListener('click', () => {
+  clearTimeout(toastTimer);
+  clearTimeout(toastHideTimer);
+  groupToast.hidden = true;
+});

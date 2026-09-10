@@ -12,3 +12,13 @@
 @media(max-width:650px){.cta{font-size:19px}.hero{gap:16px}.hero-art{grid-row:auto;grid-column:1}.hero-copy{grid-row:1}.agro-motion{max-width:310px}.hero-art .art-caption{display:none}}
 @media(prefers-reduced-motion:reduce){.cta::after{animation:none}}
 .products{grid-template-columns:repeat(3,minmax(0,1fr))}.catalog-join{text-align:center;margin:32px auto 0;max-width:460px}.catalog-join>p:first-child{color:var(--muted);font-size:15px}.catalog-join .cta{width:100%}@media(max-width:650px){.products{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Botão flutuante no mesmo formato do Refri, no celular e no computador. */
+.mobile-cta{display:flex;position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;right:auto;transform:translateX(-50%);width:calc(100% - 36px);max-width:444px;min-height:62px;padding:18px;border-radius:100px;z-index:100;overflow:hidden;text-align:center;animation:floatPulse 2.6s infinite}
+.mobile-cta::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,#ffffff38,transparent);animation:shine 2.8s ease-in-out infinite 1s;pointer-events:none}
+footer{padding-bottom:125px}
+.group-toast{position:fixed;bottom:calc(100px + env(safe-area-inset-bottom));left:24px;z-index:90;display:flex;align-items:center;gap:12px;max-width:370px;width:calc(100% - 48px);padding:14px 40px 14px 14px;background:#17271eee;border:1px solid #3b6547;border-radius:14px;box-shadow:0 12px 35px #0005;backdrop-filter:blur(12px);animation:toastEnter .4s ease-out}
+.group-toast[hidden]{display:none}.group-toast img{border-radius:50%;flex-shrink:0}.group-toast strong{display:block;font-size:14px;color:#eaf5e9;line-height:1.4}.group-toast p{font-size:12px;color:var(--muted);line-height:1.5;margin:4px 0 0}.group-toast button{position:absolute;right:4px;top:4px;width:36px;height:36px;border:0;background:transparent;color:var(--muted);font-size:24px;cursor:pointer}
+@keyframes floatPulse{0%,100%{box-shadow:0 12px 30px -8px #0009,0 0 0 1px #ffffff1f inset,0 0 0 0 #34c76f80}50%{box-shadow:0 12px 30px -8px #0009,0 0 0 1px #ffffff1f inset,0 0 0 12px #34c76f00}}
+@keyframes toastEnter{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.group-toast{left:18px;width:calc(100% - 36px);max-width:444px}}
+@media(prefers-reduced-motion:reduce){.mobile-cta,.mobile-cta::after,.group-toast{animation:none!important}}
