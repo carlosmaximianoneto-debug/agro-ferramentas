@@ -35,14 +35,31 @@ async function start() {
 }
 document.getElementById('year').textContent=new Date().getFullYear();start();
 
-// Convite verdadeiro, sem nomes ou entradas simuladas no grupo.
+// Efeito demonstrativo: nomes fictícios, sempre identificado como simulação.
 const groupToast = document.getElementById('group-toast');
-const toastTimer = setTimeout(() => {
-  if (!document.hidden) groupToast.hidden = false;
-}, 4500);
-const toastHideTimer = setTimeout(() => { groupToast.hidden = true; }, 14500);
+const simulatedJoins = [
+  ['Marcos S.', 'Cuiabá, MT'], ['Juliana R.', 'Rondonópolis, MT'],
+  ['Pedro H.', 'Campo Grande, MS'], ['André L.', 'Sinop, MT'],
+  ['Rafael T.', 'Goiânia, GO'], ['Bruno C.', 'Primavera do Leste, MT']
+];
+let joinIndex = 0;
+let toastClosed = false;
+let hideTimer;
+function showSimulatedJoin() {
+  if (toastClosed || document.hidden || groupToast.contains(document.activeElement)) return;
+  const [name, city] = simulatedJoins[joinIndex++ % simulatedJoins.length];
+  document.getElementById('join-name').textContent = name + ' entrou no grupo';
+  document.getElementById('join-city').textContent = city + ' · Exemplo ilustrativo';
+  groupToast.hidden = false;
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => { if (!groupToast.contains(document.activeElement)) groupToast.hidden = true; }, 4200);
+}
+const firstJoinTimer = setTimeout(showSimulatedJoin, 2200);
+const joinInterval = setInterval(showSimulatedJoin, 9000);
 document.getElementById('close-toast').addEventListener('click', () => {
-  clearTimeout(toastTimer);
-  clearTimeout(toastHideTimer);
+  toastClosed = true;
+  clearTimeout(firstJoinTimer);
+  clearTimeout(hideTimer);
+  clearInterval(joinInterval);
   groupToast.hidden = true;
 });
