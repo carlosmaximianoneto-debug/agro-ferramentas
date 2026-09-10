@@ -1,0 +1,36 @@
+'use strict';
+const container = document.getElementById('products');
+const statusEl = document.getElementById('catalog-status');
+const more = document.getElementById('more');
+const money = new Intl.NumberFormat('pt-BR', {style:'currency',currency:'BRL'});
+let products = [], shown = 0;
+function safeUrl(value, image = false) {
+  try { const u = new URL(value); return u.protocol === 'https:' && !u.username && !u.password && (image ? /^(http2\.mlstatic\.com|[a-z0-9]+\.supabase\.co)$/.test(u.hostname) : ['meli.la','www.mercadolivre.com.br','produto.mercadolivre.com.br'].includes(u.hostname)) ? u.href : null; } catch { return null; }
+}
+function element(tag, cls, text) { const el = document.createElement(tag); if(cls) el.className=cls; if(text) el.textContent=text; return el; }
+function productLink(url) { const a=element('a'); a.href=url; a.target='_blank'; a.rel='sponsored noopener noreferrer'; return a; }
+function category(title) { return /ancinho|mangueira|poda|enxada|pulverizador|roçadeira|jardim|motosserra|pá de/i.test(title) ? 'Campo e jardim' : /óculos|luva|bota|proteção/i.test(title) ? 'Proteção no trabalho' : /gerador|bomba|compressor/i.test(title) ? 'Equipamentos' : 'Ferramentas'; }
+function renderMore() {
+  for(const p of products.slice(shown,shown+12)) {
+    const card=element('article','product'); const photo=productLink(p.url_curta);photo.className='product-image';photo.tabIndex=-1;photo.setAttribute('aria-hidden','true');
+    const img=element('img');img.src=p.imagem;img.alt='';img.loading='lazy';img.width=320;img.height=270;
+    img.addEventListener('error',()=>{img.src='assets/logo.png';},{once:true});photo.append(img);
+    const body=element('div','product-body');body.append(element('span','product-type',category(p.titulo)));
+    const title=element('h3');const link=productLink(p.url_curta);link.textContent=p.titulo;title.append(link);body.append(title);
+    const price=element('div','product-price');price.append(element('small',null,'Preço de referência'),document.createTextNode(money.format(Number(p.preco))));body.append(price);
+    const buy=productLink(p.url_curta);buy.className='product-buy';buy.textContent='Ver no Mercado Livre';buy.setAttribute('aria-label','Ver '+p.titulo+' no Mercado Livre');buy.append(element('span',null,'↗'));body.append(buy);card.append(photo,body);container.append(card);
+  }
+  shown=Math.min(shown+12,products.length);more.hidden=shown>=products.length;
+}
+async function read(url) { const r=await fetch(url,{signal:AbortSignal.timeout(10000)});if(!r.ok) throw new Error('Catálogo indisponível');return r.json(); }
+async function start() {
+  try {
+    let data, live=false;
+    try { data=await read('/.netlify/functions/products');live=true; } catch { data=await read('products.json'); }
+    if(!Array.isArray(data.products)) throw new Error('Catálogo inválido');
+    products=data.products.filter(p=>safeUrl(p.url_curta)&&safeUrl(p.imagem,true)&&typeof p.titulo==='string'&&Number.isFinite(Number(p.preco))&&Number(p.preco)>0);
+    statusEl.textContent=products.length ? (live?'Seleção consultada no catálogo Agro.':'Seleção do catálogo Agro consultada em '+new Date(data.updatedAt).toLocaleDateString('pt-BR',{timeZone:'America/Cuiaba'})+'.')+' Confira os valores na loja.' : 'Nenhuma ferramenta disponível nesta seleção. Acompanhe as novidades no grupo.';
+    renderMore();
+  } catch { statusEl.textContent='Não foi possível carregar as ferramentas. Você pode acompanhar a seleção pelo grupo de WhatsApp.'; }
+}
+more.addEventListener('click',renderMore);document.getElementById('year').textContent=new Date().getFullYear();start();
