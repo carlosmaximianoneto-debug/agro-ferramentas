@@ -63,3 +63,20 @@ footer{padding-bottom:125px}
 
 
 @media(prefers-reduced-motion:reduce){.join-toast{display:none}}
+
+/* Aparência exata do botão Refri em todos os tamanhos de tela. */
+.mobile-cta{
+
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:linear-gradient(135deg,#34C76F,#22A859);
+    color:#08210F;font-weight:800;font-size:17px;
+    padding:18px;border-radius:100px;text-decoration:none;
+    font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:0.04em;
+    box-shadow:0 12px 30px -8px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.12) inset;
+    animation:floatPulse 2.6s infinite;
+    position:relative;overflow:hidden;
+position:fixed;bottom:calc(20px + env(safe-area-inset-bottom));left:50%;right:auto;transform:translateX(-50%);width:calc(100% - 36px);max-width:444px;min-height:0;z-index:100;line-height:normal;box-sizing:border-box;}
+.mobile-cta:link,.mobile-cta:visited,.mobile-cta:hover,.mobile-cta:active{text-decoration:none;color:#08210f}
+.mobile-cta .wa-icon{width:24px;height:24px;flex-shrink:0}
+@media(prefers-reduced-motion:reduce){.mobile-cta,.mobile-cta::after{animation:none!important}}
+
